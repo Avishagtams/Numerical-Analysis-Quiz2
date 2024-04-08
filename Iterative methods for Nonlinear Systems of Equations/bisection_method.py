@@ -79,10 +79,10 @@ if __name__ == '__main__':
                Git: https://github.com/Avishagtams/Numerical-Analysis-Quiz2.git
                Name: Avishag Tamssut 326275609
                """
-    f = lambda x: (5*x**3 + 1*x**2 + 2) / (2*x - 5)
-    a = -3
-    b = 0
-
+    lambda x: (2*x**3 + x**2 -6)
+    a = -0.6
+    b = 2.9
+    f=lambda x: (2 * x ** 3 + x ** 2 - 6)
     roots = find_all_roots(f, a, b)
     print(bcolors.OKBLUE, f"\nThe equation f(x) has approximate roots at {roots}", bcolors.ENDC)
 

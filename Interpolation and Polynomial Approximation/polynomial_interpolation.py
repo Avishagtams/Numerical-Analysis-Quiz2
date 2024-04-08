@@ -27,7 +27,7 @@ def gaussianElimination(mat):
 
 # if matrix is non-singular:
     forward_substitution_to_diagonal(mat)
-    print(np.array(mat))
+    #print(np.array(mat))
     # get solution to system using backward substitution
     return backward_substitution(mat)
 
@@ -35,11 +35,11 @@ def polynomialInterpolation(matrix,table_points, x):
 
     b = [[point[1]] for point in table_points]
     matrixNew = np.hstack((matrix, b))
-    print(bcolors.OKBLUE, "The matrix obtained from the points: ", bcolors.ENDC,'\n', np.array(matrix))
-    print(bcolors.OKBLUE, "\nb vector: ", bcolors.ENDC,'\n',np.array(b))
+    #print(bcolors.OKBLUE, "The matrix obtained from the points: ", bcolors.ENDC,'\n', np.array(matrix))
+    #print(bcolors.OKBLUE, "\nb vector: ", bcolors.ENDC,'\n',np.array(b))
     matrixSol = gaussianElimination(matrixNew)
     if matrixSol is not None:
-        print(bcolors.OKBLUE, "\nResult Gauss: ", bcolors.ENDC, '\n', np.array(matrixSol))
+        #print(bcolors.OKBLUE, "\nResult Gauss: ", bcolors.ENDC, '\n', np.array(matrixSol))
         result = sum([matrixSol[i] * (x ** i) for i in range(len(matrixSol))])
         print(bcolors.OKBLUE, "\nThe polynom:", bcolors.ENDC)
         print('P(X) = '+'+'.join([ '('+str(matrixSol[i])+') * x^' + str(i) + ' ' for i in range(len(matrixSol))]))
@@ -58,16 +58,25 @@ def Prerequisite(table_points):
 if __name__ == '__main__':
 
     print(bcolors.OKBLUE, "----------------- Interpolation & Extrapolation Methods -----------------", bcolors.ENDC)
-    table_points = [(1, 3), (2, 4), (3, -1)]
-    x = 1.5
-    matrix = Prerequisite(table_points)
+    # table_points = [(1, 3), (2, 4), (3, -1)]
+    # x = 1.5
+    f = [(1.2, 1.2), (1.3, 2.3), (1.4, -0.5), (1.5, -0.89), (1.6, -1.37)]
+    x0_A = 1.25
+    x0_B = 1.55
+    matrix = Prerequisite(f)
     if matrix is not None:
-        print(bcolors.OKBLUE, "Table Points: ", bcolors.ENDC, table_points)
-        print(bcolors.OKBLUE, "Finding an approximation to the point: ", bcolors.ENDC, x,'')
-        if polynomialInterpolation(matrix, table_points, x) is None:
+        print(bcolors.OKBLUE, "Table Points: ", bcolors.ENDC, f)
+        print(bcolors.OKBLUE, "Finding an approximation to the point: ", bcolors.ENDC, x0_A,'')
+        if polynomialInterpolation(matrix, f, x0_A) is None:
             print(" Singular Matrix")
         print(bcolors.OKBLUE, "---------------------------------------------------------------------------", bcolors.ENDC)
 
+    if matrix is not None:
+        print(bcolors.OKBLUE, "Table Points: ", bcolors.ENDC, f)
+        print(bcolors.OKBLUE, "Finding an approximation to the point: ", bcolors.ENDC, x0_B,'')
+        if polynomialInterpolation(matrix, f, x0_B) is None:
+            print(" Singular Matrix")
+        print(bcolors.OKBLUE, "---------------------------------------------------------------------------", bcolors.ENDC)
 
 
 '''

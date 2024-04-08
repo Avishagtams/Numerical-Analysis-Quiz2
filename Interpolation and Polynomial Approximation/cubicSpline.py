@@ -70,7 +70,7 @@ def spline(f, x0):
                                + solution[i+1]/6 * (((x-f[i][0]) ** 3)/h_i - h_i * (x-f[i][0])) -
                                solution[i]/6 * (((x-f[i+1][0]) ** 3)/h_i - h_i * (x-f[i+1][0])))
 
-        print("s" + str(i) + "(x) = " + str(S_list[i]))
+        #print("s" + str(i) + "(x) = " + str(S_list[i]))
 
     print_xo(f,S_list,x0)
 
@@ -81,9 +81,12 @@ def spline(f, x0):
 
 
 def calc_im_spline():
-    f = [(1, 1), (2, 2), (3, 1), (4, 1.5), (5, 1)]
-    x0 = 4.5
-    spline(f, x0)
+    f = [(1.2, 1.2), (1.3, 2.3), (1.4, -0.5), (1.5, -0.89), (1.6, -1.37)]
+    x0_A = 1.25
+    x0_B = 1.55
+    spline(f, x0_A)
+    spline(f, x0_B)
+
 
 
 

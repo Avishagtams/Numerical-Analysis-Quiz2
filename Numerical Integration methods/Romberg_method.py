@@ -4,6 +4,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
 from sympy.utilities.lambdify import lambdify
+import math
+from colors import bcolors
+import sympy as sp
+from sympy.utilities.lambdify import lambdify
+from decimal import Decimal
 
 
 def romberg_integration(func, a, b, n):
@@ -62,16 +67,16 @@ def calc_error(a, b, n):
     print(f"Error in {x0} is: " + str(E_x0))
 
 def f(x):
-    return 1/(2+x ** 4)
+    return (2 * x ** 2 + math.cos(2 * math.e ** -2 * x)) / (2 * x ** 3 + x ** 2 - 6)
 
 
 if __name__ == '__main__':
 
-    a = 0
-    b = 1
-    n = 5
+    a = -0.6
+    b = 2.9
+    n = 16
     integral = romberg_integration(f, a, b, n)
-
+    result=round(integral, 5)
     print( f" Division into n={n} sections ")
-    print(bcolors.OKBLUE, f"Approximate integral in range [{a},{b}] is {integral}", bcolors.ENDC)
+    print(bcolors.OKBLUE, f"Approximate integral in range [{a},{b}] is {result}", bcolors.ENDC)
 
